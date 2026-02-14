@@ -24,7 +24,7 @@ export const loginUserService = async(email,password)=>{
     if(!user) throw new NotFoundError("User not found");
     // const isMatch = await bcrypt.compare(password,user.password);
     if(!isMatch) throw new UnauthorizedError("Invalid credentials");
-    const token = await signToken({id:user._id});
+    const token =  signToken({id:user._id});
     
-    return {token};
+    return {token, user};
 }
