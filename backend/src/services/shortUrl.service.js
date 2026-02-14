@@ -5,7 +5,7 @@ import { generateShortUrl } from "../utils/helper.js";
 
 export const createShortUrlWithoutUserService = async (url) => {
 
-    const shortUrl = await generateShortUrl(7);
+    const shortUrl = generateShortUrl(7);
 
     if (!shortUrl) throw new Error("Failed to generate short URL");
 
@@ -15,8 +15,12 @@ export const createShortUrlWithoutUserService = async (url) => {
 
 };
 
-export const createShortUrlWithUserService = async (url, userId) => {
-    const shortUrl = await generateShortUrl(7);
+export const createShortUrlWithUserService = async (url, userId, slug=null) => {
+    const shortUrl = slug ||  generateShortUrl(7);
+
+     const exits = await getCustomUrl(slug);
+     if(exits) throw new Error("Custom URL already exists");
+     
     await saveShortUrl(shortUrl, url, userId);
     return shortUrl;
 };

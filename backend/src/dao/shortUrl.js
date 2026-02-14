@@ -28,3 +28,8 @@ export const getUrlFromShortUrl = async (shortUrl) => {
 
     return await ShortUrl.findOneAndUpdate({ short_url: shortUrl }, { $inc: { clicks: 1 } })
 }
+
+export const getCustomUrl = async(slug)=>{
+     return  await ShortUrl.findOne({ short_url: slug })
+    
+}
