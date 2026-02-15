@@ -9,14 +9,16 @@ import { wrapAsync } from "../utils/tryCatch.js";
 
 const createShortUrl = wrapAsync(async (req, res) => {
 
-    const { url } = req.body;
+    const data = req.body;
     let shortUrl;
+    // console.log(req.body);
+    // console.log(req.user);
 
     if (req.user) {
-        shortUrl = await createShortUrlWithUserService(url, req.user.id);
+        shortUrl = await createShortUrlWithUserService(data.url, req.user.id, data.slug);
     } else {
 
-        shortUrl = await createShortUrlWithoutUserService(url);
+        shortUrl = await createShortUrlWithoutUserService(data.url);
     }
 
 

@@ -2,10 +2,13 @@ import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser"
 import connectDB from "./config/mongo.config.js";
-import shortUrlRoutes from "./routes/shortUrl.routes.js";
+import short_url from "./routes/shortUrl.routes.js";
 import cors from "cors";
 import { erroHandler } from "./utils/errorHandler.js";
-import authRoutes from "./routes/auth.routes.js";
+import auth_routes from "./routes/auth.routes.js";
+import users_routes from "./routes/users.routes.js";
+import { attachUser } from "./utils/attachUser.js";
+import { redirectFromShortUrl } from "./controllers/shorturl.controllers.js";
 dotenv.config();
 
 const app = express();
@@ -22,13 +25,15 @@ connectDB()
 .catch((error) => {
     console.log(error);
 }); 
-app.use("/api/auth",authRoutes);
-app.use("/",shortUrlRoutes);
+
+app.use(attachUser);
+
+app.use("/api/user",users_routes);
+app.use("/api/auth",auth_routes);
+app.use("/api/create",short_url);
+app.use("/:id", redirectFromShortUrl)
 app.use(erroHandler)
 
-app.get("/",(req,res) => {
-    res.send("Hello World!");
-})
 
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
