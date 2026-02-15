@@ -1,4 +1,4 @@
-import { saveShortUrl } from "../dao/shortUrl.js";
+import { getCustomUrl, saveShortUrl } from "../dao/shortUrl.js";
 
 import { generateShortUrl } from "../utils/helper.js";
 

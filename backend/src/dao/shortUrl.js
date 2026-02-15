@@ -1,6 +1,7 @@
 import ShortUrl from "../models/shortUrl.models.js";
 import { ConflictError } from "../utils/errorHandler.js";
 export const saveShortUrl = async (shortUrl, longUrl, userId) => {
+console.log("user id",userId);
 
     try {
         const newUrl = new ShortUrl({
@@ -9,7 +10,7 @@ export const saveShortUrl = async (shortUrl, longUrl, userId) => {
         });
 
         if (userId) {
-            newUrl.user_id = userId;
+            newUrl.user = userId;
         }
         newUrl.save();
 
