@@ -141,3 +141,12 @@ vite.config.ts.timestamp-*
 .vite/
 
 .env
+
+.env.local
+
+.env.example
+
+.env.test
+
+.env.prod
+
