@@ -11,14 +11,15 @@ export const register_user = wrapAsync(async (req, res) => {
     if (!name || !email || !password) {
         throw new ValidationError("All fields are required");
     }
-    const { token, user } = await registerUserService(name, email, password);
-    req.user = user
+    const { token, newUser } = await registerUserService(name, email, password);
+    req.user = newUser
     res.cookie("accessToken", token, cookieOptions);
 
     res.status(201).json({
         success: true,
-        message: "Login SuccessFull",
-        token: token.token,
+        message: "register SuccessFull",
+        user: newUser,
+        token: token,
     })
 
 });
@@ -31,12 +32,15 @@ export const login_user = wrapAsync(async (req, res) => {
     }
     const { token, user } = await loginUserService(email, password);
     req.user = user
+    // console.log(user);
+    
 
     res.cookie("accessToken", token, cookieOptions);
     res.status(200).json({
         success: true,
         message: "Login SuccessFull",
-        token: token.token,
+        user: user,
+        token: token
     })
 })
 

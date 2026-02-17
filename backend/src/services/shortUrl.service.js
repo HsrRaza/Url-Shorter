@@ -17,6 +17,8 @@ export const createShortUrlWithoutUserService = async (url) => {
 
 export const createShortUrlWithUserService = async (url, userId, slug=null) => {
     const shortUrl = slug ||  generateShortUrl(7);
+    // console.log(shortUrl);
+    
 
      const exits = await getCustomUrl(slug);
      if(exits) throw new Error("Custom URL already exists");

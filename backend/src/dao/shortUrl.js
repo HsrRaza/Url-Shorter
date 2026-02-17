@@ -1,7 +1,7 @@
 import ShortUrl from "../models/shortUrl.models.js";
 import { ConflictError } from "../utils/errorHandler.js";
 export const saveShortUrl = async (shortUrl, longUrl, userId) => {
-console.log("user id",userId);
+// console.log("user id",userId);
 
     try {
         const newUrl = new ShortUrl({
