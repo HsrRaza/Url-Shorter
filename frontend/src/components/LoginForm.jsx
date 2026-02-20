@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { loginUser } from '../api/user.api';
 import {useDispatch, useSelector} from 'react-redux';
@@ -12,21 +13,21 @@ const LoginForm = ({ state }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const auth = useSelector((state) => state.auth)
-    console.log(auth)
+    // console.log(auth)
 
     const handleSubmit = async () => {
         setLoading(true);
         setError('');
 
         try {
-            console.log("signin")
+            // console.log("signin")
             const data = await loginUser(email, password);
-            console.log(data);
+            // console.log(data);
             dispatch(login(data.user))
             
             navigate({to:"/dashboard"})
             setLoading(false);
-            console.log("signin success")
+            // console.log("signin success")
         } catch (err) {
             setLoading(false);
             setError(err.message || 'Login failed. Please check your credentials.');

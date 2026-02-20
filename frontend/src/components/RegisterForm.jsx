@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { registerUser } from '../api/user.api';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +15,7 @@ const RegisterForm = ({state}) => {
   const navigate = useNavigate()
 
    const auth = useSelector((state) => state.auth)
-    console.log(auth)
+    // console.log(auth)
 
   const handleSubmit = async (e) => {
     e.preventDefault();    
