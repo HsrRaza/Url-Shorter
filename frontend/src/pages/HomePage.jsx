@@ -1,15 +1,37 @@
 
+import { Blinker } from '../components/heroSection/Blinker'
+import FeatureStats from '../components/heroSection/FeaturesStats'
+import Text from '../components/heroSection/Text'
 import UrlForm from '../components/UrlForm'
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
-    <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-      <h1 className="text-2xl font-bold text-center mb-6">URL Shortener</h1>
-      <UrlForm/>
+    <div className="min-h-screen bg-black  font-sans tracking-[-0.02em] overflow-hidden relative ">
+      <div className='absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-red-900/20 blur-[120px]  rounded-full pointer-events-none'></div>
+      <div className='absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-red-900/10 blur-[100px]  rounded-full pointer-events-none'></div>
+
+      {/* hero section */}
+
+      <div className='min-h-screen flex flex-col items-center pt-40 text-center relative'>
+
+        <Blinker />
+        <Text/>
+        <UrlForm/>
+        <FeatureStats/>
+        
+      </div>
+
     </div>
-  </div>
+
+
+
+
+
+
+
   )
 }
 
 export default HomePage
+
+
