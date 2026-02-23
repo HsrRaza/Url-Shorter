@@ -13,6 +13,7 @@ export const register_user = wrapAsync(async (req, res) => {
     }
     const { token, newUser } = await registerUserService(name, email, password);
     req.user = newUser
+
     res.cookie("accessToken", token, cookieOptions);
 
     res.status(201).json({
@@ -30,12 +31,13 @@ export const login_user = wrapAsync(async (req, res) => {
     if (!email || !password) {
         throw new ValidationError("All fields are required");
     }
+
     const { token, user } = await loginUserService(email, password);
     req.user = user
     // console.log(user);
-    
 
     res.cookie("accessToken", token, cookieOptions);
+
     res.status(200).json({
         success: true,
         message: "Login SuccessFull",
@@ -45,7 +47,6 @@ export const login_user = wrapAsync(async (req, res) => {
 })
 
 export const logout_user = wrapAsync(async (req, res) => {
-    res.clearCookie("accessToken", cookieOptions);
     res.status(200).json({
         success: true,
         message: "Logout SuccessFull",

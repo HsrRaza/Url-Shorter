@@ -3,7 +3,7 @@ import { Blinker } from '../components/heroSection/Blinker'
 import FeatureStats from '../components/heroSection/FeaturesStats'
 import Text from '../components/heroSection/Text'
 import UrlForm from '../components/UrlForm'
-
+import Features from '../components/heroSection/Features'
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-black  font-sans tracking-[-0.02em] overflow-hidden relative ">
@@ -18,6 +18,7 @@ const HomePage = () => {
         <Text/>
         <UrlForm/>
         <FeatureStats/>
+        <Features/>
         
       </div>
 
