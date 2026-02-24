@@ -4,12 +4,14 @@ import { loginUser } from '../api/user.api';
 import {useDispatch, useSelector} from 'react-redux';
 import { login } from '../store/slice/authSlice.js';
 import { useNavigate } from '@tanstack/react-router';
+import { useQueryClient } from '@tanstack/react-query';
 
 const LoginForm = ({ state }) => {
     const [email, setEmail] = useState('aybbn@example.com');
     const [password, setPassword] = useState('123456');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+    const queryClient = useQueryClient()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const auth = useSelector((state) => state.auth)
@@ -23,11 +25,23 @@ const LoginForm = ({ state }) => {
             // console.log("signin")
             const data = await loginUser(email, password);
             // console.log(data);
-            dispatch(login(data.user))
+
+            // save Token.
+            localStorage.setItem("token", data.token)
+
+
+            // refetch user data
+            await queryClient.invalidateQueries({ 
+               queryKey:["currentUser"],
+             })
             
-            navigate({to:"/dashboard"})
+             navigate({to:"/dashboard"})
+
+             
+            // dispatch(login(data.user))
+            
             setLoading(false);
-            // console.log("signin success")
+            console.log("signin success")
         } catch (err) {
             setLoading(false);
             setError(err.message || 'Login failed. Please check your credentials.');

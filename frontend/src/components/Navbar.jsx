@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from '@tanstack/react-router';
 const Navbar = () => {
 
   const navigate = useNavigate()
   const isLocation = useLocation()
   const isAuth = isLocation.pathname === "/auth"
-  const [scrolled, setScrolled] = React.useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
         setScrolled(true);

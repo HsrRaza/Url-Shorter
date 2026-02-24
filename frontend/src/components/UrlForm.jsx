@@ -26,7 +26,6 @@ const UrlForm = () => {
       setShortUrl(shortUrl);
       queryClient.invalidateQueries({ queryKey: ['userUrls'] });  // we are invalidating the query to refetch the data and update the UI
      setError(null)
-
     } catch (error) {
       setError(error.message);
     }

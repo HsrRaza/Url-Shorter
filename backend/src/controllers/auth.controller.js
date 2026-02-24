@@ -8,10 +8,13 @@ export const register_user = wrapAsync(async (req, res) => {
 
     const { name, email, password } = req.body;
 
+    console.log(req.body);
+
     if (!name || !email || !password) {
         throw new ValidationError("All fields are required");
     }
     const { token, newUser } = await registerUserService(name, email, password);
+
     req.user = newUser
 
     res.cookie("accessToken", token, cookieOptions);
