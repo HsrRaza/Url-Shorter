@@ -6,10 +6,6 @@ const DashboardHeader = () => (
         Manage and track your shortened links
       </p>
     </div>
-
-    <button className="bg-red-700 hover:bg-red-600 px-5 py-2 rounded-xl transition">
-      + Create Link
-    </button>
   </div>
 );
 

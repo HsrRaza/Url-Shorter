@@ -3,6 +3,8 @@ import { useQuery } from '@tanstack/react-query'
 import { getAllUserUrls } from '../api/user.api'
 
 const UserUrl = () => {
+
+
   const { data: urls, isLoading, isError, error } = useQuery({
     queryKey: ['userUrls'],
     queryFn: getAllUserUrls,
@@ -78,7 +80,15 @@ const UserUrl = () => {
   return (
     <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl mt-6 shadow-[0_0_30px_rgba(0,0,0,0.4)]">
 
-      <div className="overflow-x-auto h-56">
+      <div className="
+  overflow-x-auto max-h-[280px] rounded-2xl
+  [&::-webkit-scrollbar]:w-2
+  [&::-webkit-scrollbar-track]:bg-white/5
+  [&::-webkit-scrollbar-track]:rounded-full
+  [&::-webkit-scrollbar-thumb]:bg-red-700/40
+  [&::-webkit-scrollbar-thumb]:rounded-full
+  hover:[&::-webkit-scrollbar-thumb]:bg-red-500/60
+">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-white/5  border-b  border-white/10">
             <tr>
