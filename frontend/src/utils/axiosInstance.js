@@ -42,8 +42,6 @@ axiosInstance.interceptors.response.use(
                     break;
                 case 401:
                     console.error("Unauthorized:", data);
-                    // localStorage.removeItem("token");
-                    store.dispatch(logout());
                     redirect({ to: "/auth" })
                     // You could redirect to login page or refresh token here
                     break;
