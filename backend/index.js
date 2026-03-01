@@ -14,11 +14,20 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3001;
 
-
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://tinytrek.onrender.com"
+];
 
 app.use(cors({
-    origin: process.env.CLIENT_BASE_URL,
-    credentials: true
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
 
 app.use(express.json());
