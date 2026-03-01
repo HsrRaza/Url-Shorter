@@ -24,17 +24,14 @@ const LoginForm = ({ state }) => {
         try {
             // console.log("signin")
             const data = await loginUser(email, password);
-            // console.log(data);
-
-            // save Token.
-            localStorage.setItem("token", data.token)
+            console.log(data);
 
 
             // refetch user data
-            await queryClient.invalidateQueries({ 
+         const refetch =   await queryClient.invalidateQueries({ 
                queryKey:["currentUser"],
              })
-            
+            console.log(refetch)
              navigate({to:"/dashboard"})
              
              //  dispatch(login(data.user))
