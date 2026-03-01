@@ -116,12 +116,12 @@ const UserUrl = () => {
                 <td className="px-6 py-4">
                   <div className="text-sm">
                     <a
-                      href={`http://localhost:3000/${url.short_url}`}
+                      href={`${import.meta.env.VITE_API_URL}/${url.short_url}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-red-400  hover:text-red-300 hover:underline"
                     >
-                      {`localhost:3000/${url.short_url}`}
+                      {`${import.meta.env.VITE_API_URL}/${url.short_url}`}
                     </a>
                   </div>
                 </td>
@@ -134,7 +134,7 @@ const UserUrl = () => {
                 </td>
                 <td className="px-6 py-4 text-sm font-medium">
                   <button
-                    onClick={() => handleCopy(`http://localhost:3000/${url.short_url}`, url._id)}
+                    onClick={() => handleCopy(`${import.meta.env.VITE_API_URL}/${url.short_url}`, url._id)}
                     className={`inline-flex items-center px-3 py-1.5 text-xs rounded-lg transition-all ${copiedId === url._id
                       ? "bg-green-600 text-white"
                       : "bg-white/10 text-white hover:bg-white/20 border border-white/10"
