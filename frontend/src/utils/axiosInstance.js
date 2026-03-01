@@ -1,10 +1,8 @@
 import axios from "axios"
-import { logout } from "../store/slice/authSlice";
-import { store } from "../store/store";
 import { redirect } from "@tanstack/react-router";
 
 const axiosInstance = axios.create({
-    baseURL:"http://localhost:3000",
+    baseURL:import.meta.env.VITE_API_URL,
     timeout:10000, //10s
     withCredentials:true
 })
