@@ -1,4 +1,7 @@
 import axios from "axios"
+import { logout } from "../store/slice/authSlice";
+import { store } from "../store/store";
+import { redirect } from "@tanstack/react-router";
 
 const axiosInstance = axios.create({
     baseURL:"http://localhost:3000",
@@ -8,18 +11,18 @@ const axiosInstance = axios.create({
 
 // req interceptor for adding token
 
-axiosInstance.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
+// axiosInstance.interceptors.request.use(
+//     (config) => {
+//         const token = localStorage.getItem("accessToken");
+//         if (token) {
+//             config.headers.Authorization = `Bearer ${token}`;
+//         }
+//         return config;
+//     },
+//     (error) => {
+//         return Promise.reject(error);
+//     }
+// );
 
 // Response interceptor
 axiosInstance.interceptors.response.use(
@@ -39,6 +42,9 @@ axiosInstance.interceptors.response.use(
                     break;
                 case 401:
                     console.error("Unauthorized:", data);
+                    // localStorage.removeItem("token");
+                    store.dispatch(logout());
+                    redirect({ to: "/auth" })
                     // You could redirect to login page or refresh token here
                     break;
                 case 403:

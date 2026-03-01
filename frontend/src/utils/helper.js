@@ -14,6 +14,7 @@ export const checkAuth = async ({ context }) => {
         store.dispatch(login(user));
 
         const { isAuthenticated } = store.getState().auth;
+        console.log(isAuthenticated)
         if (!isAuthenticated) return false;
         return true
 

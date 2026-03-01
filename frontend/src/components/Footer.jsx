@@ -25,7 +25,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Hover Text */}
-      <div className="w-full border-t border-white/5 py-6 flex justify-center overflow-hidden">
+      <div className="w-full  py-6 flex justify-center overflow-hidden">
         <h2 className="text-4xl md:text-6xl font-bold tracking-widest text-white/10 select-none group cursor-default">
           {name.split("").map((char, index) => (
             <span

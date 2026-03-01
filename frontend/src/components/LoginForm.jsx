@@ -36,12 +36,15 @@ const LoginForm = ({ state }) => {
              })
             
              navigate({to:"/dashboard"})
+             
+             //  dispatch(login(data.user))
 
              
-            // dispatch(login(data.user))
             
             setLoading(false);
-            console.log("signin success")
+            // console.log("signin success")
+            // console.log(data.user);
+            
         } catch (err) {
             setLoading(false);
             setError(err.message || 'Login failed. Please check your credentials.');
